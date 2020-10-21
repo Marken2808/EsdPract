@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package practical1;
+package TriangleTestingProgram;
 
 import java.util.ArrayList;
 import java.util.Arrays;
