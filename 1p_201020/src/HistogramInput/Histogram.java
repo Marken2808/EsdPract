@@ -34,7 +34,7 @@ public class Histogram {
         
         String [] strArr = new String[10];
         for(int i=0;i<10;i++){
-            strArr[i] = String.join("*", Collections.nCopies(test[i], "*"));
+            strArr[i] = String.join("", Collections.nCopies(test[i], "*"));
             System.out.printf("%d-%d\t|", (i+1)*10-9,(i+1)*10);
             System.out.println(strArr[i]);
         }
