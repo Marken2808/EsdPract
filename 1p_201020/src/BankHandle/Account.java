@@ -29,6 +29,26 @@ public class Account {
         return test;
     }
     
+    public double getSelectedID(ArrayList<Account> arr, int s){
+        
+        for( int i=0; i<arr.size(); i++){
+            if(s == arr.get(i).getAccID()){
+                return this.current = arr.get(i).getCurrent();
+            }
+        } 
+        return 0;
+    }
+    
+    public void getSelectedMethod(ArrayList<Account> arr, String s, double money){
+        if("d".equals(s)) {
+            deposit(money);
+            System.out.println("Deposit: " + this.current);
+        } else if("w".equals(s)){
+            withdraw(money);
+            System.out.println("Withdraw: " + this.current);
+        }
+    }
+    
     public void deposit(double money){
         this.current += money;
     }

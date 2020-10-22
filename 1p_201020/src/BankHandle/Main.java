@@ -22,34 +22,35 @@ public class Main {
         // TODO code application logic here
         Scanner input = new Scanner(System.in);
         ArrayList<Account> test = new ArrayList<>();
-        
-        System.out.println("Enter id and money: ");
+        Account acc = new Account();
+        System.out.println("Enter ID and Money [ Quit by 0! ]: ");
         while(input.hasNextInt()){
             int id =input.nextInt();
             if(id == 0) {break;}
             double money =input.nextDouble();
-            System.out.println("Quit by 0! or  ");
-            Account acc = new Account(id,money);
-            System.out.println("Enter id and money: ");
+            
+            acc = new Account(id,money);
+            System.out.println("Enter ID and Money [ Quit by 0! ]:  ");
+           // System.out.println("Enter id and money: ");
             test.add(acc);  
         }
         System.out.println(test);
         
-        System.out.println(test.get(1));
-        System.out.println("Enter id to do: ");
+        System.out.println("Enter ID to find: ");
+        int id =input.nextInt();
+        acc.getSelectedID(test,id);
+        System.out.println("Deposit press [d] or Withdraw press [w]");
+        String method =input.next();
+        if("d".equals(method)){
+            System.out.println("Amount of deposit: ");
+            double money =input.nextDouble();
+            acc.getSelectedMethod(test, method, money);
+        } else if("w".equals(method)){
+            System.out.println("Amount of withdraw: ");
+            double money =input.nextDouble();
+            acc.getSelectedMethod(test, method, money);
+        }
         
-        int[] num = new int[30];
-        
-        
-        
-        int select =input.nextInt();
-        
-        
-        
-        
-        
-        
-       
         
     }
     
