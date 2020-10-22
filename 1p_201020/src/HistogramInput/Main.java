@@ -26,7 +26,6 @@ public class Main {
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.println("Enter any numbers (1-100):");
         File file = new File("src/HistogramInput/grades.txt");
-        Scanner scan;
         Scanner scanner = new Scanner(file);
         while(scanner.hasNextInt()){
             input.add(scanner.nextInt());
