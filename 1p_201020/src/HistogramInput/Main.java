@@ -5,6 +5,8 @@
  */
 package HistogramInput;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -18,15 +20,14 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic 
         ArrayList<Integer> input = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
-//        for (int i = 0; i<10; i++){
-//            System.out.print(i+"1-"+(i+1)+"0\t|");
-//            input[i] = scanner.nextInt();
-//        }
-        System.out.println("Enter any numbers (1-100):");
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter any numbers (1-100):");
+        File file = new File("src/HistogramInput/grades.txt");
+        Scanner scan;
+        Scanner scanner = new Scanner(file);
         while(scanner.hasNextInt()){
             input.add(scanner.nextInt());
         }
