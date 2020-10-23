@@ -33,6 +33,8 @@ public class Account {
         
         for( int i=0; i<arr.size(); i++){
             if(s == arr.get(i).getAccID()){
+                this.accID = arr.get(i).getAccID();
+                
                 return this.current = arr.get(i).getCurrent();
             }
         } 
@@ -42,10 +44,14 @@ public class Account {
     public void getSelectedMethod(ArrayList<Account> arr, String s, double money){
         if("d".equals(s)) {
             deposit(money);
-            System.out.println("Deposit: " + this.current);
+            System.out.println("Deposit Successfully!. Account: " + this.accID + "'s balance now is: " + this.current);
         } else if("w".equals(s)){
-            withdraw(money);
-            System.out.println("Withdraw: " + this.current);
+            if (money>this.current){
+                System.out.println("Your current balance not enough!");
+            } else {
+                withdraw(money);
+                System.out.println("Withdraw: " + this.current*(1+getInterest()));              
+            }
         }
     }
     
@@ -56,6 +62,10 @@ public class Account {
     public void withdraw(double money){
         this.current -= money;
     }
+    
+    public double getInterest(){
+        return 0.03;
+    } 
     
     public int getAccID(){
         return this.accID;

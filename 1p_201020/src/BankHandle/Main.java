@@ -34,22 +34,28 @@ public class Main {
            // System.out.println("Enter id and money: ");
             test.add(acc);  
         }
-        System.out.println(test);
+        System.out.println("List of added account: "+test);
         
         System.out.println("Enter ID to find: ");
         int id =input.nextInt();
-        acc.getSelectedID(test,id);
-        System.out.println("Deposit press [d] or Withdraw press [w]");
-        String method =input.next();
-        if("d".equals(method)){
-            System.out.println("Amount of deposit: ");
-            double money =input.nextDouble();
-            acc.getSelectedMethod(test, method, money);
-        } else if("w".equals(method)){
-            System.out.println("Amount of withdraw: ");
-            double money =input.nextDouble();
-            acc.getSelectedMethod(test, method, money);
+        
+        
+        if(acc.getSelectedID(test,id) == 0 ){
+            System.out.println("Invalid account!");
+        }else{
+            System.out.println("Deposit press [d] or Withdraw press [w]");
+            String method =input.next();
+            if("d".equals(method)){
+                System.out.println("Amount of deposit: ");
+                double money =input.nextDouble();
+                acc.getSelectedMethod(test, method, money);
+            } else if("w".equals(method)){
+                System.out.println("Amount of withdraw: ");
+                double money =input.nextDouble();
+                acc.getSelectedMethod(test, method, money);
+            } 
         }
+        
         
         
     }
