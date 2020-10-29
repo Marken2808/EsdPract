@@ -1,0 +1,8 @@
+CREATE TABLE TRANSACTIONS  (
+    transID varchar(20) NOT NULL PRIMARY KEY,
+    transDate varchar(20) DEFAULT NULL,
+    transAmount varchar(20) DEFAULT NULL,
+    transType varchar(20) DEFAULT NULL,
+    FK_CustomerID varchar(20) NOT NULL,
+    FOREIGN KEY (FK_CustomerID) REFERENCES CUSTOMERS(CUSTOMERID)
+) ;
