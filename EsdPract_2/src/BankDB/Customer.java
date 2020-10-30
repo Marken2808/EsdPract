@@ -49,5 +49,10 @@ public class Customer {
         this.cusBalance = cusBalance;
     }
 
+    @Override
+    public String toString() {
+        return this.cusId + " | " + this.cusName + " | " + this.cusBalance; //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }
