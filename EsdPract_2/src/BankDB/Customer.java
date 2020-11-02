@@ -16,6 +16,7 @@ public class Customer {
     int cusId;
     String cusName;
     double cusBalance;
+    ArrayList<Customer> cusArr = new ArrayList<>();
     
     public Customer(){}
     
@@ -48,7 +49,23 @@ public class Customer {
     public void setCusBalance(double cusBalance) {
         this.cusBalance = cusBalance;
     }
+    
+    public void deposit(double money){
+        this.cusBalance += money;
+    }
+    
+    public void withdraw(double money){
+        this.cusBalance -= money;
+    }
 
+    public ArrayList<Customer> getCusArr() {
+        return cusArr;
+    }
+
+    public void setCusArr(ArrayList<Customer> cusArr) {
+        this.cusArr = cusArr;
+    }
+    
     @Override
     public String toString() {
         return this.cusId + " | " + this.cusName + " | " + this.cusBalance; //To change body of generated methods, choose Tools | Templates.

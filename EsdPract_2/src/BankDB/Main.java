@@ -11,14 +11,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.RowId;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -58,26 +55,52 @@ public class Main {
         statement.close(); 
     }
     
-    public static void select(String tableDB, int choice) throws SQLException{
+    public static Object[] select(String query) throws SQLException{
         statement = con.createStatement();
-        resultSet = statement.executeQuery("SELECT * FROM " + tableDB +" WHERE customerID=" + choice);
+        resultSet = statement.executeQuery(query);
         ResultSetMetaData metaData =  resultSet.getMetaData();
+        int size = metaData.getColumnCount();
         while (resultSet.next()) {
             
-            Customer cus = new Customer();
-            int id = Integer.parseInt(resultSet.getString(1));
-            String name = resultSet.getString(2);
-            double balance = Double.valueOf(resultSet.getString(3));
-            
-            cus = new Customer(id, name, balance);
- 
-            System.out.println(cus.toString());
-            
+//            Customer cus = new Customer();
+//            int id = Integer.parseInt(resultSet.getString(1));
+//            String name = resultSet.getString(2);
+//            double balance = Double.valueOf(resultSet.getString(3));
+//            
+//            cus = new Customer(id, name, balance);
+            Object[] obj = new Object[size];    // start from 0
+            for(int i=0; i<size; i++){
+                obj[i] = resultSet.getString(i+1); //start from 1
+            }
+            return obj;
         }
+        //System.out.println("Size: " + numberOfColumns);
         resultSet.close();
         statement.close(); 
-//        return null;
+        return null;
     }
+    
+//    public static void update(String tableDB, int choseId, double amount) throws SQLException {
+//        statement = con.createStatement();
+//        resultSet = statement.executeQuery("SELECT * FROM " + tableDB );
+//
+//        while (resultSet.next()) {
+//            
+//            Customer cus = new Customer();
+//            int id = Integer.parseInt(resultSet.getString(1));
+//            String name = resultSet.getString(2);
+//            double balance = Double.valueOf(resultSet.getString(3));
+//            
+//            
+//            cus = new Customer(id, name, balance);
+// 
+//            System.out.println(cus.toString());
+//          
+//        }
+////        System.out.println("-------------------");
+//        resultSet.close();
+//        statement.close(); 
+//    }
     
     public static Object[] scanTable(Scanner sc, String[] s) throws SQLException {
         
@@ -102,6 +125,23 @@ public class Main {
         
         return cusOb;
     }
+    
+    public static Object[] getDeposit(Object[] ob, double amount) {
+        Customer cs = new Customer(
+                Integer.valueOf((String)ob[0]),
+                (String)ob[1],
+                Double.valueOf((String)ob[2])
+        );
+        
+        Object[] cusOb = new Object[ob.length];
+        cusOb[0] = cs.getCusId();
+        cusOb[1] = cs.getCusName();
+        cusOb[2] = cs.getCusBalance();
+        cs.deposit(amount);
+        
+        return cusOb;
+        
+    }
    
     
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
@@ -118,13 +158,20 @@ public class Main {
         retrieve("customers");
         
         System.out.print("Choose Customer ID: ");
-        int choice = scan.nextInt();
-        select("customers", choice);
-//            System.out.print("Chose: " + Arrays.toString(cusOb));
-//        } else {
-//            System.out.print("No data");
-//        }
+        int choseId = scan.nextInt();
+        String querySelectCus = "SELECT * FROM customers WHERE customerID=" + choseId;
+        Object[] test = select(querySelectCus);
         
+        System.out.println("test: " + Arrays.toString(test));
+        
+//        System.out.println("Method Deposit(d) or Withdraw(w)");
+//        String method = scan.next();
+//        System.out.println("Amount of money");
+//        double money = scan.nextDouble();
+//        
+//        Object[] cusDep = getDeposit(cusOb, money);
+//        System.out.println(Arrays.toString(cusOb[]));
+//        
         con.close();  
 
     }
