@@ -11,12 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.sTriangle;
 
 /**
  *
  * @author Marken Tuan Nguyen
  */
-public class ServletOne extends HttpServlet {
+public class DriverTriangleServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,16 +30,33 @@ public class ServletOne extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        int sideOne = Integer.parseInt( request.getParameter("side1") );
+        int sideTwo = Integer.parseInt( request.getParameter("side2") );
+        int sideThree = Integer.parseInt( request.getParameter("side3") );
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+		
+	sTriangle triangle = new sTriangle( sideOne, sideTwo, sideThree );
+//            out.write("side1 is " + sideOne+"\n");
+//            out.write("side2 is " + sideTwo+"\n");
+//            out.write("side3 is " + sideThree+"\n");
+            
+//            out.write("Triangle is " + triangle.evaluate());
+            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletOne</title>");            
+            out.println("<title>TESTs</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletOne at " + request.getContextPath() + "</h1>");
+            out.println("side1 is " + sideOne + "<br/>");
+            out.println("side2 is " + sideTwo+ "<br/>");
+            out.println("side3 is " + sideThree+ "<br/>");
+            out.println("<h1>DriverTriangleServlet is " + triangle.evaluate() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
