@@ -11,12 +11,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-        <form action="DriverTriangleServlet" >
-            Input side1: <input type="number" name="side1"><br/>
-            Input side2: <input type="number" name="side2"><br/>
-            Input side3: <input type="number" name="side3"><br/>
-            <input type="submit" />
-        </form>
+    <body>     
+       <%
+           String str = (String)request.getAttribute("triangleMsg");
+           out.println(str);
+        %>
     </body>
 </html>

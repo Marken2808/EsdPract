@@ -3,20 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package HistogramDB;
+package model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,19 +21,13 @@ import java.util.logging.Logger;
  *
  * @author Marken Tuan Nguyen
  */
-public class Main {
+public class HistDB {
+    Connection con = null;
+    PreparedStatement preStatement = null;
+    Statement statement = null;
+    ResultSet resultSet = null;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws FileNotFoundException {
-        // TODO code application logic 
-
-        Connection con = null;
-        PreparedStatement preStatement = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-
+    public String doQuery(String query) {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException ex) {
@@ -83,36 +73,4 @@ public class Main {
             System.out.println("SQL statement is not executed!");
             s.printStackTrace();
         }
-              
-        
-        try {
-            statement = con.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM grades" );
-            ResultSetMetaData metaData =  resultSet.getMetaData();
-            int numberOfColumns = metaData.getColumnCount();
-            //System.out.println("result: " +resultSet);
-            while (resultSet.next()) {
-                    System.out.print(resultSet.getObject(1)+"\t");
-                System.out.println();
-            }
-            System.out.println("-------------------");
-            resultSet.close();
-            statement.close(); 		
-            con.close();                                     
-        }
-        catch (SQLException s){
-            System.out.println("SQL statement is not executed!");
-            s.printStackTrace();
-        }
-//        
-//        String [] strArr = new String[10];
-//        for(int i=0;i<10;i++){
-//            strArr[i] = String.join("", Collections.nCopies(test[i], "*"));
-//            System.out.printf("%d-%d\t|", (i+1)*10-9,(i+1)*10);
-//            System.out.println(strArr[i]);
-//        }
-//        Histogram histogram = new Histogram();
-//        histogram.checkSum(input);
-    }
-    
 }

@@ -11,13 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.sTriangle;
 
 /**
  *
  * @author Marken Tuan Nguyen
  */
-public class DriverTriangleServlet extends HttpServlet {
+public class servletHistogram extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,36 +29,19 @@ public class DriverTriangleServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        int sideOne = Integer.parseInt( request.getParameter("side1") );
-        int sideTwo = Integer.parseInt( request.getParameter("side2") );
-        int sideThree = Integer.parseInt( request.getParameter("side3") );
-	sTriangle triangle = new sTriangle( sideOne, sideTwo, sideThree );
-                
-        String msg = triangle.evaluate();
-        request.setAttribute("triangleMsg", msg);
-        
-        request.getRequestDispatcher("jspPage.jsp").forward(request, response);
-        
-//        try (PrintWriter out = response.getWriter()) {
-//            out.write("Triangle is " + triangle.evaluate());
-            
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>TESTs</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("side1 is " + sideOne + "<br/>");
-//            out.println("side2 is " + sideTwo+ "<br/>");
-//            out.println("side3 is " + sideThree+ "<br/>");
-//            out.println("<h1>DriverTriangleServlet is " + triangle.evaluate() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-
-//        }
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet servletHistogram</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet servletHistogram at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

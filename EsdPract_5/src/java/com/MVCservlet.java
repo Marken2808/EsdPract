@@ -7,17 +7,18 @@ package com;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.sTriangle;
+import model.DBBean;
 
 /**
  *
  * @author Marken Tuan Nguyen
  */
-public class DriverTriangleServlet extends HttpServlet {
+public class MVCservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,33 +33,26 @@ public class DriverTriangleServlet extends HttpServlet {
             throws ServletException, IOException {
         
         
-        int sideOne = Integer.parseInt( request.getParameter("side1") );
-        int sideTwo = Integer.parseInt( request.getParameter("side2") );
-        int sideThree = Integer.parseInt( request.getParameter("side3") );
-	sTriangle triangle = new sTriangle( sideOne, sideTwo, sideThree );
-                
-        String msg = triangle.evaluate();
-        request.setAttribute("triangleMsg", msg);
+        DBBean db = new DBBean();
+        String s = db.doQuery("");
+
+        request.setAttribute("data", s);
+        RequestDispatcher view = request.getRequestDispatcher("MVCjsp.jsp");
+        view.forward(request,response);
+
         
-        request.getRequestDispatcher("jspPage.jsp").forward(request, response);
-        
+//        response.setContentType("text/html;charset=UTF-8");
 //        try (PrintWriter out = response.getWriter()) {
-//            out.write("Triangle is " + triangle.evaluate());
-            
-            /* TODO output your page here. You may use following sample code. */
+//            /* TODO output your page here. You may use following sample code. */
 //            out.println("<!DOCTYPE html>");
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>TESTs</title>");            
+//            out.println("<title>Servlet DatabaseServlet</title>");            
 //            out.println("</head>");
 //            out.println("<body>");
-//            out.println("side1 is " + sideOne + "<br/>");
-//            out.println("side2 is " + sideTwo+ "<br/>");
-//            out.println("side3 is " + sideThree+ "<br/>");
-//            out.println("<h1>DriverTriangleServlet is " + triangle.evaluate() + "</h1>");
+//            out.println("<h1>Servlet DatabaseServlet at " + request.getContextPath() + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
-
 //        }
     }
 

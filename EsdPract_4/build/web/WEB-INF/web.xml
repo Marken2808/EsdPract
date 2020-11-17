@@ -8,9 +8,17 @@
         <servlet-name>DriverTriangleServlet</servlet-name>
         <servlet-class>com.DriverTriangleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servletHistogram</servlet-name>
+        <servlet-class>com.servletHistogram</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DriverTriangleServlet</servlet-name>
         <url-pattern>/DriverTriangleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servletHistogram</servlet-name>
+        <url-pattern>/servletHistogram</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
